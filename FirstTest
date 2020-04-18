@@ -1,0 +1,24 @@
+#My code actualy don't work. i try to understand why
+
+import discord
+
+from discord.ext import commands
+import time as t
+
+
+bot=commands.Bot(command_prefix='!')
+
+@bot.event
+async def on_ready():
+    print('Online')
+
+@bot.command()
+async def dmall(ctx,*,message):
+    for mem in ctx.guild.members:
+        try:
+            await mem.send(message)
+            await ctx.send(f'Sent dm to: {mem.name}')
+        except:
+             print('User dm closed')
+
+bot.run('TOKEN')
